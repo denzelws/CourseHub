@@ -1,6 +1,7 @@
 import { Router } from "express"
 import { create, deleteCourse, index, show, update } from "./controllers/CourseController"
 import { createCategory, deleteCategory, indexCategory, showCategory, updateCategory } from "./controllers/CategoryController"
+import { createTeacher, deleteTeacher, indexTeacher, showTeacher, updateTeacher } from "./controllers/TeacherCourseController"
 
 const router = Router()
 
@@ -17,5 +18,12 @@ router.get('/categories', indexCategory)
 router.get('/categories/:id', showCategory)
 router.put('/category/:id', updateCategory)
 router.delete('/category/:id', deleteCategory)
+
+//teachers
+router.post('/teacher', createTeacher)
+router.get('/teachers', indexTeacher)
+router.get('/teachers/:id', showTeacher)
+router.put('/teacher/:id', updateTeacher)
+router.delete('/teacher/:id', deleteTeacher)
 
 export default router
