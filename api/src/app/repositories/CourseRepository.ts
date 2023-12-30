@@ -10,12 +10,26 @@ export type Course = {
 export const CourseRepository = {
   async findAll(orderBy = 'ASC') {
     const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC'
-    const rows = await db.query(`SELECT * FROM courses ORDER BY name ${direction}`)
+    const rows = await db.query(`
+    SELECT courses.*, categories.name AS category_name, teachers.name AS teacher_name
+    FROM courses
+    LEFT JOIN categories ON categories.id = courses.category_id
+    LEFT JOIN teachers ON teachers.id = courses.teacher_id
+    ORDER BY name ${direction}
+    `
+  )
     return rows
   },
 
   async findById(id: string) {
-   const [row] = await db.query('SELECT * FROM courses WHERE id = $1', [id])
+   const [row] = await db.query(`
+   SELECT courses.*, categories.name AS category_name, teachers.name AS teacher_name
+   FROM courses
+   LEFT JOIN categories ON categories.id = courses.category_id
+   LEFT JOIN teachers ON teachers.id = courses.teacher_id
+   WHERE courses.id = $1
+   `, [id]
+  )
    return row
   },
 
