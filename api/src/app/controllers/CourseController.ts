@@ -26,10 +26,10 @@ export const create = async (req: Request, res: Response) => {
   res.json(course)
 }
 
-export const update = (req: Request, res: Response) => {
-  res.json('put')
-}
+// export const update = (req: Request, res: Response) => {
+//   res.json('put')
+// }
 
-export const deleteCourse = (req: Request, res: Response) => {
-  res.json('delete')
-}
+// export const deleteCourse = (req: Request, res: Response) => {
+//   res.json('delete')
+// }
