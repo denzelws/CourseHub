@@ -25,6 +25,10 @@ export const show = async (req: Request, res: Response) => {
 export const create = async (req: Request, res: Response) => {
   const {name, category_id, teacher_id} = req.body
 
+if (!name || !category_id || !teacher_id) {
+    return res.status(400).json({ error: 'Please provide name, category_id, and teacher_id' })
+  }
+
   const course = await CourseRepository.create({
     id: '',
     name,
