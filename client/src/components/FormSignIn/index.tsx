@@ -1,25 +1,21 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Lock, Mail, Person } from '@styled-icons/material-outlined';
+import { Lock, Mail } from '@styled-icons/material-outlined';
 import { FormWrapper, FormLink } from '../Form';
 import TextField from '../Textfield';
 import * as S from './styles';
 
 type FormData = {
-  username: string
   email: string
   password: string
-  confirm_password: string
 }
 
 const initialFormData: FormData = {
-  username: '',
   email: '',
   password: '',
-  confirm_password: '',
 }
 
-const FormSignUp = () => {
+const FormSignIn = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState<FormData>(initialFormData)
 
@@ -32,7 +28,7 @@ const FormSignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/register', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,27 +37,19 @@ const FormSignUp = () => {
       })
 
       if (response.ok) {
-        console.log('Signup successful')
         navigate('/')
+        console.log('Sign-in successful');
       } else {
-        console.error('Signup failed')
+        console.error('Sign-in failed');
       }
     } catch (error) {
-      console.error('Error occurred during signup:', error)
+      console.error('Error occurred during sign-in:', error)
     }
   }
 
   return (
     <FormWrapper>
       <form onSubmit={handleSubmit}>
-        <TextField
-          name="username"
-          placeholder="Username"
-          type="text"
-          icon={<Person />}
-          value={formData.username}
-          onChange={handleChange}
-        />
         <TextField
           name="email"
           placeholder="Email"
@@ -78,23 +66,15 @@ const FormSignUp = () => {
           value={formData.password}
           onChange={handleChange}
         />
-        <TextField
-          name="confirm_password"
-          placeholder="Confirm password"
-          type="password"
-          icon={<Lock />}
-          value={formData.confirm_password}
-          onChange={handleChange}
-        />
 
         <S.Button type="submit">
-          <span>Sign up now</span>
+          <span>Sign in</span>
         </S.Button>
 
         <FormLink>
-          Already have an account?
-          <Link to="/sign-in">
-            <a>Sign in</a>
+          Don't have an account?
+          <Link to="/sign-up">
+            <a>Sign up</a>
           </Link>
         </FormLink>
       </form>
@@ -102,4 +82,4 @@ const FormSignUp = () => {
   )
 }
 
-export default FormSignUp;
+export default FormSignIn;
