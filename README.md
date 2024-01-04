@@ -41,9 +41,3 @@ O banco de dados utilizado é o PostgreSQL, que pode ser configurado localmente 
     3. Inicie o servidor de desenvolvimento: `npm   run dev / yarn dev`
     4. Certifique-se de configurar corretamente o   banco de dados para interagir com a aplicação.
 
-## Funcionalidades
-
-- Cadastro de novos usuários
-- Login de usuários existentes
-- Gerenciamento básico de usuários (CRUD)
-
