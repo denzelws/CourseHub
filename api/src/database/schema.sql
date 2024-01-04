@@ -20,3 +20,10 @@ CREATE TABLE IF NOT EXISTS courses (
   teacher_id UUID,
   FOREIGN KEY(teacher_id) REFERENCES teachers(id)
 );
+
+CREATE TABLE users (
+  id UUID NOT NULL UNIQUE DEFAULT uuid_generate_v4(),
+  username VARCHAR(50) NOT NULL UNIQUE,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password_hash VARCHAR(100) NOT NULL
+);

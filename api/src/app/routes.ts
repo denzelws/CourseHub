@@ -2,6 +2,7 @@ import { Router } from "express"
 import { create, deleteCourse, index, show, update } from "./controllers/CourseController"
 import { createCategory, deleteCategory, indexCategory, showCategory, updateCategory } from "./controllers/CategoryController"
 import { createTeacher, deleteTeacher, indexTeacher, showTeacher, updateTeacher } from "./controllers/TeacherCourseController"
+import { login, register } from "./controllers/UserController"
 
 const router = Router()
 
@@ -25,5 +26,9 @@ router.get('/teachers', indexTeacher)
 router.get('/teachers/:id', showTeacher)
 router.put('/teacher/:id', updateTeacher)
 router.delete('/teacher/:id', deleteTeacher)
+
+//Register/login user
+router.post('/register', register)
+router.post('/login', login)
 
 export default router

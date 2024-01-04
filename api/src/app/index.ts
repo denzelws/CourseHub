@@ -1,8 +1,10 @@
 import express from 'express'
 import routes from './routes'
+import corsMiddleware from './middlewares/cors'
 
 const app = express()
 app.use(express.json())
+app.use(corsMiddleware)
 app.use(routes)
 
 const env = 3000
